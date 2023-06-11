@@ -228,19 +228,11 @@
             $("#message-warning").fadeIn();
           }
         },
-        error: function (jqXHR, textStatus, errorThrown) {
+        error: function () {
           sLoader.fadeOut();
-          if (jqXHR.status == 404) {
-            $("#message-warning").html("The URL is not found.");
-          } else if (jqXHR.status == 405) {
-            $("#message-warning").hide();
-            $("#contactForm").fadeOut();
-            $("#message-success").fadeIn();
-          } else {
-            $("#message-warning").html(
-              "Something went right. Please try again."
-            );
-          }
+          $("#message-warning").hide();
+          $("#contactForm").fadeOut();
+          $("#message-success").fadeIn();
           $("#message-warning").fadeIn();
         },
       });
