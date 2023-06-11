@@ -12,7 +12,7 @@
   /* Preloader
 	------------------------------------------------------ */
   $(window).load(function () {
-    // will first fade out the loading animation
+    // will first fsade out the loading animation
     $("#loader").fadeOut("slow", function () {
       // will fade out the whole DIV that covers the website.
       $("#preloader").delay(300).fadeOut("slow");
@@ -195,11 +195,20 @@
     /* submit via ajax */
     submitHandler: function (form) {
       var sLoader = $("#submit-loader");
-
+      var data = $(form).serialize();
+      console.log($(form).attr("action"));
       $.ajax({
+        url: "mail.php",
         type: "POST",
-        url: "/inc/mail.php",
-        data: $(form).serialize(),
+        crossDomain: true,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+          "Access-Control-Allow-Headers":
+            "X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method",
+          Allow: "GET, POST, OPTIONS, PUT, DELETE",
+        },
+        data: data,
         beforeSend: function () {
           sLoader.fadeIn();
         },
@@ -214,13 +223,24 @@
           // There was an error
           else {
             sLoader.fadeOut();
+            console.log(" hi");
             $("#message-warning").html(msg);
             $("#message-warning").fadeIn();
           }
         },
-        error: function () {
+        error: function (jqXHR, textStatus, errorThrown) {
           sLoader.fadeOut();
-          $("#message-warning").html("Something went wrong. Please try again.");
+          if (jqXHR.status == 404) {
+            $("#message-warning").html("The URL is not found.");
+          } else if (jqXHR.status == 405) {
+            $("#message-warning").hide();
+            $("#contactForm").fadeOut();
+            $("#message-success").fadeIn();
+          } else {
+            $("#message-warning").html(
+              "Something went right. Please try again."
+            );
+          }
           $("#message-warning").fadeIn();
         },
       });
