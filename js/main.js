@@ -10,7 +10,7 @@
 
   /*---------------------------------------------------- */
   /* Preloader
-	------------------------------------------------------ */
+  ------------------------------------------------------ */
   $(window).load(function () {
     // will first fsade out the loading animation
     $("#loader").fadeOut("slow", function () {
@@ -21,19 +21,19 @@
 
   /*---------------------------------------------------- */
   /* FitText Settings
-  	------------------------------------------------------ */
+    ------------------------------------------------------ */
   setTimeout(function () {
     $("#intro h1").fitText(1, { minFontSize: "42px", maxFontSize: "84px" });
   }, 100);
 
   /*---------------------------------------------------- */
   /* FitVids
-	------------------------------------------------------ */
+  ------------------------------------------------------ */
   $(".fluid-video-wrapper").fitVids();
 
   /*---------------------------------------------------- */
   /* Owl Carousel
-	------------------------------------------------------ */
+  ------------------------------------------------------ */
   $("#owl-slider").owlCarousel({
     navigation: false,
     pagination: true,
@@ -47,14 +47,14 @@
 
   /*----------------------------------------------------- */
   /* Alert Boxes
-  	------------------------------------------------------- */
+    ------------------------------------------------------- */
   $(".alert-box").on("click", ".close", function () {
     $(this).parent().fadeOut(500);
   });
 
   /*----------------------------------------------------- */
   /* Stat Counter
-  	------------------------------------------------------- */
+    ------------------------------------------------------- */
   var statSection = $("#stats"),
     stats = $(".stat-count");
 
@@ -86,7 +86,7 @@
 
   /*---------------------------------------------------- */
   /*	Masonry
-	------------------------------------------------------ */
+  ------------------------------------------------------ */
   var containerProjects = $("#folio-wrapper");
 
   containerProjects.imagesLoaded(function () {
@@ -98,7 +98,7 @@
 
   /*----------------------------------------------------*/
   /*	Modal Popup
-	------------------------------------------------------*/
+  ------------------------------------------------------*/
   $(".item-wrap a").magnificPopup({
     type: "inline",
     fixedContentPos: false,
@@ -135,7 +135,7 @@
 
   /*---------------------------------------------------- */
   /* Highlight the current section in the navigation bar
-  	------------------------------------------------------ */
+    ------------------------------------------------------ */
   var sections = $("section"),
     navigation_links = $("#main-nav-wrap li a");
 
@@ -160,7 +160,7 @@
 
   /*---------------------------------------------------- */
   /* Smooth Scrolling
-  	------------------------------------------------------ */
+    ------------------------------------------------------ */
   $(".smoothscroll").on("click", function (e) {
     e.preventDefault();
 
@@ -183,61 +183,8 @@
 
   /*---------------------------------------------------- */
   /*  Placeholder Plugin Settings
-	------------------------------------------------------ */
+  ------------------------------------------------------ */
   $("input, textarea, select").placeholder();
-
-  /*---------------------------------------------------- */
-  /*	contact form
-	------------------------------------------------------ */
-
-  /* local validation */
-  $("#contactForm").validate({
-    /* submit via ajax */
-    submitHandler: function (form) {
-      var sLoader = $("#submit-loader");
-      var data = $(form).serialize();
-      console.log($(form).attr("action"));
-      $.ajax({
-        url: "mail.php",
-        type: "POST",
-        crossDomain: true,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-          "Access-Control-Allow-Headers":
-            "X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method",
-          Allow: "GET, POST, OPTIONS, PUT, DELETE",
-        },
-        data: data,
-        beforeSend: function () {
-          sLoader.fadeIn();
-        },
-        success: function (msg) {
-          // Message was sent
-          if (msg == "OK") {
-            sLoader.fadeOut();
-            $("#message-warning").hide();
-            $("#contactForm").fadeOut();
-            $("#message-success").fadeIn();
-          }
-          // There was an error
-          else {
-            sLoader.fadeOut();
-            console.log(" hi");
-            $("#message-warning").html(msg);
-            $("#message-warning").fadeIn();
-          }
-        },
-        error: function () {
-          sLoader.fadeOut();
-          $("#message-warning").hide();
-          $("#contactForm").fadeOut();
-          $("#message-success").fadeIn();
-          $("#message-warning").fadeIn();
-        },
-      });
-    },
-  });
 
   /*----------------------------------------------------- */
   /* Back to top
