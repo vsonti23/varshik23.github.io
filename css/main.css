@@ -1799,13 +1799,13 @@ header .logo a {
 
 .intro-info {
   margin-top: 4.2rem;
-  /* margin-right: -30px; */
-  /* margin-left: -30px; */
+  margin-right: -30px;
+  */
+  /* /* margin-left: -30px; */
 }
 
 .intro-info img {
   width: 100%;
-  /* border-radius: 100%; */
   margin: 0.9rem 1.9rem 20rem 2;
   margin-bottom: 2em;
   float: left;
@@ -1886,12 +1886,10 @@ header .logo a {
 
 @media only screen and (max-width: 768px) {
   .intro-info img {
-    height: 7.8rem;
-    width: 7.8rem;
-  }
-
-  .intro-info .lead {
-    padding-left: 11rem;
+    float: none;
+    display: inline-block;
+    height: 80%;
+    width: 40%;
   }
 
   .about-content h3 {
@@ -1920,8 +1918,8 @@ header .logo a {
   }
 
   .intro-info img {
-    height: 6.6rem;
-    width: 6.6rem;
+    height: 100%;
+    width: 80%;
     float: none;
     display: inline-block;
   }
